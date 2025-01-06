@@ -1,7 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useEffect, useState} from 'react';
+import { fetchGoods } from './services/goodsService';
 
 function App() {
+  const [goods, setGoods] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+      const getGoods = async () => {
+          try {
+              const data = await fetchGoods();
+              setGoods(data);
+          } catch (error) {
+              setError('Error fetching goods' + error);
+          }
+      };
+
+      getGoods();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,8 +35,16 @@ function App() {
         >
           Learn React
         </a>
+        <h1>Goods</h1>
+            {error && <div>{error}</div>}
+            <ul>
+                {goods.map(good => (
+                    <li key={good.id}>{good.name}</li>
+                ))}
+            </ul>
       </header>
     </div>
+  
   );
 }
 
