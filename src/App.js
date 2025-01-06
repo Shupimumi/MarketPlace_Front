@@ -11,7 +11,7 @@ function App() {
       const getGoods = async () => {
           try {
               const data = await fetchGoods();
-              setGoods(data);
+              setGoods(data._embedded.goodEntityList);
           } catch (error) {
               setError('Error fetching goods' + error);
           }
@@ -39,7 +39,7 @@ function App() {
             {error && <div>{error}</div>}
             <ul>
                 {goods.map(good => (
-                    <li key={good.id}>{good.name}</li>
+                    <li key={good.id}>Товар {good.name} с id={good.id} стоит {good.cost}</li>
                 ))}
             </ul>
       </header>
