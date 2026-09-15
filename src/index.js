@@ -6,9 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { ReactKeycloakProvider } from '@react-keycloak/web';
 import keycloak from './keycloak';
 
+// PKCE replaces the client secret for a public (browser) client
+const keycloakInitOptions = {
+    pkceMethod: 'S256',
+    onLoad: 'check-sso',
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <ReactKeycloakProvider authClient={keycloak}>
+    <ReactKeycloakProvider authClient={keycloak} initOptions={keycloakInitOptions}>
      <App />
     </ReactKeycloakProvider>
 );
