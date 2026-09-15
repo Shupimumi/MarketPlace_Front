@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^1.7.9",
+    "@react-keycloak/web": "^3.4.0",
+    "axios": "^1.9.0",
     "cra-template": "1.2.0",
+    "keycloak-js": "^26.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
